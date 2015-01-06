@@ -1,7 +1,5 @@
 package info.yangguo.demo.design.observer;
 
-import java.util.Observer;
-
 /**
  * Created by IntelliJ IDEA
  * User:杨果
