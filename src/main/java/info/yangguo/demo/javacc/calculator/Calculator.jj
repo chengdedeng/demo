@@ -1,0 +1,118 @@
+/**
+ * Author: yangguo@outlook.com
+ */
+options
+{
+  LOOKAHEAD= 1;
+
+  CHOICE_AMBIGUITY_CHECK = 2;
+  OTHER_AMBIGUITY_CHECK = 1;
+  STATIC = false;
+  DEBUG_PARSER = false;
+  DEBUG_LOOKAHEAD = false;
+  DEBUG_TOKEN_MANAGER = false;
+  ERROR_REPORTING = true;
+  JAVA_UNICODE_ESCAPE = false;
+  UNICODE_INPUT = false;
+  IGNORE_CASE = false;
+  USER_TOKEN_MANAGER = false;
+  USER_CHAR_STREAM = false;
+  BUILD_PARSER = true;
+  BUILD_TOKEN_MANAGER = true;
+  SANITY_CHECK = true;
+  FORCE_LA_CHECK = false;
+}
+
+PARSER_BEGIN(Calculator)
+package info.yangguo.test1.javacc;
+public class Calculator
+{
+ public static void main(String args[]) throws ParseException
+ {
+ Calculator parser = new Calculator(System.in);
+ while (true)
+ {
+ parser.parse();
+ }
+ }
+}
+PARSER_END(Calculator)
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+}
+
+TOKEN:
+{
+ < NUMBER: (<DIGIT>)+ ( "." (<DIGIT>)+ )? >
+| < DIGIT: ["0"-"9"] >
+| < EOL: "\n" >
+}
+
+
+double parse():
+{
+ double result;
+}
+{
+ result=binaryOperation() <EOL>
+  {
+    System.out.println(result);
+    return result;
+  }
+ | <EOF> { System.exit(-1); }
+ | <EOL>
+}
+
+
+/**二元运算**/
+double binaryOperation():
+{
+ double result;
+ double tmp;
+}
+{
+ result=binaryOperationHighPriority()
+ (
+ "+" tmp=binaryOperation() { result += tmp; }
+ | "-" tmp=binaryOperation() { result -= tmp; }
+ )*
+ { return result; }
+}
+
+/**二元运算中高优先级的部分**/
+double binaryOperationHighPriority():
+{
+ double result;
+ double tmp;
+}
+{
+ result=unaryOperation()
+ (
+ "*" tmp=binaryOperationHighPriority() { result *= tmp; }
+   | "/" tmp=binaryOperationHighPriority() { result /= tmp; }
+ )*
+ { return result; }
+}
+/**一元运算**/
+double unaryOperation():
+{
+ double result;
+}
+{
+ "-" result=element() { return -result; }
+ | result=element() { return result; }
+}
+
+
+double element():
+{
+ Token token;
+ double result;
+}
+{
+ token=<NUMBER> { return Double.parseDouble(token.toString()); }
+ | "(" result=binaryOperation() ")" { return result; }
+}
