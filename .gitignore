@@ -39,3 +39,5 @@ node_modules/
 build/
 gradle.properties
 gradle/
+gradlew
+gradlew.bat

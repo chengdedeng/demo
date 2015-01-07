@@ -14,7 +14,7 @@ public class SimpleCharStream
   int bufsize;
   int available;
   int tokenBegin;
-/** Position in buffer. */
+/** Position in getBuffer. */
   public int bufpos = -1;
   protected int bufline[];
   protected int bufcolumn[];
@@ -412,7 +412,7 @@ public class SimpleCharStream
     return ret;
   }
 
-  /** Reset buffer when finished. */
+  /** Reset getBuffer when finished. */
   public void Done()
   {
     buffer = null;

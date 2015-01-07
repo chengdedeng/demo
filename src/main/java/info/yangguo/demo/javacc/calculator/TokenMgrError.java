@@ -28,7 +28,7 @@ public class TokenMgrError extends Error
   static final int STATIC_LEXER_ERROR = 1;
 
   /**
-   * Tried to change to an invalid lexical state.
+   * Tried to change to an invalid lexical setState.
    */
   static final int INVALID_LEXICAL_STATE = 2;
 
@@ -97,7 +97,7 @@ public class TokenMgrError extends Error
    * token manager to indicate a lexical error.
    * Parameters :
    *    EOFSeen     : indicates if EOF caused the lexical error
-   *    curLexState : lexical state in which this error occurred
+   *    curLexState : lexical setState in which this error occurred
    *    errorLine   : line number when the error occurred
    *    errorColumn : column number when the error occurred
    *    errorAfter  : prefix that was seen before this error occurred

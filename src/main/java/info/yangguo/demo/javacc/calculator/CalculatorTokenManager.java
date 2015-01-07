@@ -134,7 +134,7 @@ public static final String[] jjstrLiteralImages = {
 "", null, null, null, null, null, "\12", "\53", "\55", "\52", "\57", "\50", 
 "\51", };
 
-/** Lexer state names. */
+/** Lexer setState names. */
 public static final String[] lexStateNames = {
    "DEFAULT",
 };
@@ -184,11 +184,11 @@ public void ReInit(SimpleCharStream stream, int lexState)
    SwitchTo(lexState);
 }
 
-/** Switch to specified lex state. */
+/** Switch to specified lex setState. */
 public void SwitchTo(int lexState)
 {
    if (lexState >= 1 || lexState < 0)
-      throw new TokenMgrError("Error: Ignoring invalid lexical state : " + lexState + ". State unchanged.", TokenMgrError.INVALID_LEXICAL_STATE);
+      throw new TokenMgrError("Error: Ignoring invalid lexical setState : " + lexState + ". State unchanged.", TokenMgrError.INVALID_LEXICAL_STATE);
    else
       curLexState = lexState;
 }

@@ -17,7 +17,7 @@ public interface CalculatorConstants {
   /** RegularExpression Id. */
   int EOL = 6;
 
-  /** Lexical state. */
+  /** Lexical setState. */
   int DEFAULT = 0;
 
   /** Literal token values. */
