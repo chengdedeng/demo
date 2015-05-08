@@ -1,0 +1,40 @@
+package info.yangguo.demo.fork_join;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Created by IntelliJ IDEA
+ * User:杨果
+ * Date:15/3/11
+ * Time:上午11:06
+ * <p/>
+ * Description:
+ */
+public class Document {
+    private final List<String> lines;
+
+    Document(List<String> lines) {
+        this.lines = lines;
+    }
+
+    List<String> getLines() {
+        return this.lines;
+    }
+
+    static Document fromFile(File file) throws IOException {
+        List<String> lines = new LinkedList<>();
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line = reader.readLine();
+            while (line != null) {
+                lines.add(line);
+                line = reader.readLine();
+            }
+        }
+        return new Document(lines);
+    }
+}

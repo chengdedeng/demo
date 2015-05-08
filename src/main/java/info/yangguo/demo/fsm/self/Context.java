@@ -1,4 +1,4 @@
-package info.yangguo.demo.fsm;
+package info.yangguo.demo.fsm.self;
 
 
 

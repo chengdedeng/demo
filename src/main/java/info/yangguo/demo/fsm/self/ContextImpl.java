@@ -1,8 +1,5 @@
-package info.yangguo.demo.fsm;
+package info.yangguo.demo.fsm.self;
 
-
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 
 /**
  * Created by IntelliJ IDEA

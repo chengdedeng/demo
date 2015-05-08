@@ -105,9 +105,9 @@ public class Token implements java.io.Serializable {
   /**
    * Returns a new Token object, by default. However, if you want, you
    * can create and return subclass objects based on the value of ofKind.
-   * Simply add the cases to the switch for all those special cases.
+   * Simply monitor the cases to the switch for all those special cases.
    * For example, if you have a subclass of Token called IDToken that
-   * you want to create if ofKind is ID, simply add something like :
+   * you want to create if ofKind is ID, simply monitor something like :
    *
    *    case MyParserConstants.ID : return new IDToken(ofKind, image);
    *

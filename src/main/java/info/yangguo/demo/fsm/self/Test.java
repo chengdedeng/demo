@@ -1,22 +1,6 @@
-package info.yangguo.demo.fsm;
+package info.yangguo.demo.fsm.self;
 
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufUtil;
-import io.netty.buffer.UnpooledByteBufAllocator;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandler;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.epoll.EpollEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.ByteToMessageDecoder;
-
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA
