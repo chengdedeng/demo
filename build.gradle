@@ -1,3 +1,14 @@
+group = 'info.yangguo'
+version = '1.0-SNAPSHOT'
+
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+jar {
+    baseName = "demo"
+}
+
 ext {
     frameworkVersion = '1.1.2.RELEASE'
     springVersion = '3.1.3.RELEASE'
@@ -5,35 +16,26 @@ ext {
 }
 
 repositories {
-    maven { url 'http://192.168.160.187:8081/nexus/content/groups/public' }
-    maven { url 'https://maven.alfresco.com/nexus/content/groups/public' }
-    maven { url 'https://raw.github.com/dianping/cat/mvn-repo' }
-    mavenCentral()
     mavenLocal()
+    mavenCentral()
 }
 
-allprojects {
-    version = '1.0'
-    buildDir = 'target'
+buildDir = 'target'
 
-    apply plugin: 'maven'
-    apply plugin: 'java'
-    apply plugin: 'groovy'
-    apply plugin: 'idea'
 
-    sourceCompatibility = '1.7'
-    targetCompatibility = '1.7'
 
-    dependencies {
-        compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
-        compile "io.netty:netty-all:4.0.24.Final"
-        compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
-        compile 'org.slf4j:slf4j-api:1.7.7'
-        compile 'org.squirrelframework:squirrel-foundation:0.3.6'
-        compile 'joda-time:joda-time:2.7'
-        testCompile group: 'junit', name: 'junit', version: '4.11'
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
 
-        compile "com.travelzen:tz-eterm-interface-client:1.1"
-
-    }
+dependencies {
+    compile "io.netty:netty-all:4.0.24.Final"
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    compile 'org.squirrelframework:squirrel-foundation:0.3.6'
+    compile 'joda-time:joda-time:2.7'
+    compile 'junit:junit:4.11'
+    compile 'com.sun.tools.btrace:btrace-client:1.2.3'
+    compile 'com.sun.tools.btrace:btrace-boot:1.2.3'
+    compile 'com.sun.tools.btrace:btrace-agent:1.2.3'
+    compile "org.codehaus.groovy:groovy-all:2.3.7"
 }

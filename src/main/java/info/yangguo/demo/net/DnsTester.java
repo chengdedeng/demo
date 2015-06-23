@@ -1,7 +1,10 @@
 package info.yangguo.demo.net;
 
+import org.junit.Test;
+
 import java.lang.reflect.Field;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -56,5 +59,4 @@ public class DnsTester {
             System.out.println(hi.getKey() + " " + new Date(expires) + " " + hi.getValue());
         }
     }
-
 }
