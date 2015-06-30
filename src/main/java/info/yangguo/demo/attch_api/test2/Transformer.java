@@ -1,4 +1,4 @@
-package info.yangguo.demo.attch_api;
+package info.yangguo.demo.attch_api.test2;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,20 +7,20 @@ import java.io.InputStream;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
-
 /**
  * Created by IntelliJ IDEA
  * User:杨果
- * Date:15/6/5
- * Time:下午2:08
+ * Date:15/6/30
+ * Time:上午9:56
  * <p/>
  * Description:
  */
-class Transformer implements ClassFileTransformer {
+public class Transformer implements ClassFileTransformer {
 
-    public static final String classNumberReturns2 = "TransClass.class.2";
+    public static final String classNumberReturns2 = "/Users/yangguo/work/code/demo/src/main/java/info/yangguo/demo/attch_api/test2/TransClass.class";
 
     public static byte[] getBytesFromFile(String fileName) {
+        System.out.println("getBytesFromFile");
         try {
             // precondition
             File file = new File(fileName);
@@ -51,10 +51,12 @@ class Transformer implements ClassFileTransformer {
 
     public byte[] transform(ClassLoader l, String className, Class<?> c,
                             ProtectionDomain pd, byte[] b) throws IllegalClassFormatException {
-        if (!className.equals("TransClass")) {
+        System.out.println("transform");
+        if (!className.equals("info/yangguo/demo/attch_api/test2/TransClass")) {
             return null;
         }
         return getBytesFromFile(classNumberReturns2);
 
     }
 }
+

@@ -1,0 +1,15 @@
+       8: aload_1
+       9: invokevirtual #4                  // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      12: ldc           #5                  // String count
+      14: iconst_0
+      15: anewarray     #6                  // class java/lang/Class
+      18: invokevirtual #7                  // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      21: astore_2
+      22: aload_2
+      23: aload_1
+      24: iconst_0
+      25: anewarray     #8                  // class java/lang/Object
+      28: invokevirtual #9                  // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      31: pop
+      32: return
+}

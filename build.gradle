@@ -4,9 +4,22 @@ version = '1.0-SNAPSHOT'
 apply plugin: 'maven'
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'fatjar'
 
 jar {
     baseName = "demo"
+}
+
+fatJar {
+    classifier 'fat'
+
+    // We need to add the main class to the manifest, otherwise the JAR won't start.
+    manifest {
+        attributes 'Main-Class':'info.yangguo.demo.attch_api.test2.TestMainInJar','Agent-Class':'info.yangguo.demo.attch_api.test2.AgentMain','Can-Redine-Classes':'true','Can-Retransform-Classes': 'true'
+    }
+
+    // We have to exclude signature files from the fat JAR, otherwise we'll get invalid signature file digest errors.
+    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
 }
 
 ext {
@@ -38,4 +51,17 @@ dependencies {
     compile 'com.sun.tools.btrace:btrace-boot:1.2.3'
     compile 'com.sun.tools.btrace:btrace-agent:1.2.3'
     compile "org.codehaus.groovy:groovy-all:2.3.7"
+    compile 'eu.appsatori:gradle-fatjar-plugin:0.2'
+    compile 'org.javassist:javassist:3.20.0-GA'
+
+    compile files('/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/lib/tools.jar')
+}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'eu.appsatori:gradle-fatjar-plugin:0.2'
+    }
 }

@@ -1,0 +1,19 @@
+       8: invokestatic  #4                  // Method java/lang/ClassLoader.getSystemClassLoader:()Ljava/lang/ClassLoader;
+      11: iconst_1
+      12: anewarray     #5                  // class java/lang/Class
+      15: dup
+      16: iconst_0
+      17: ldc_w         #6                  // class test.info/yangguo/others/CountService
+      20: aastore
+      21: new           #7                  // class test.info/yangguo/others/Test1$JdkHandler
+      24: dup
+      25: aload_1
+      26: invokespecial #8                  // Method test.info/yangguo/others/Test1$JdkHandler."<init>":(Ljava/lang/Object;)V
+      29: invokestatic  #9                  // Method java/lang/reflect/Proxy.newProxyInstance:(Ljava/lang/ClassLoader;[Ljava/lang/Class;Ljava/lang/reflect/InvocationHandler;)Ljava/lang/Object;
+      32: checkcast     #6                  // class test.info/yangguo/others/CountService
+      35: astore_2
+      36: aload_2
+      37: invokeinterface #10,  1           // InterfaceMethod test.info/yangguo/others/CountService.count:()I
+      42: pop
+      43: return
+}
