@@ -53,6 +53,7 @@ dependencies {
     compile "org.codehaus.groovy:groovy-all:2.3.7"
     compile 'eu.appsatori:gradle-fatjar-plugin:0.2'
     compile 'org.javassist:javassist:3.20.0-GA'
+    compile 'commons-lang:commons-lang:2.6'
 
     compile files('/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/lib/tools.jar')
 }

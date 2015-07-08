@@ -16,8 +16,8 @@
 package info.yangguo.demo.javassist;
 
 
-import info.yangguo.zeus.common.utils.ClassHelper;
-import info.yangguo.zeus.common.utils.ReflectUtils;
+import info.yangguo.demo.utils.ClassHelper;
+import info.yangguo.demo.utils.ReflectUtils;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;

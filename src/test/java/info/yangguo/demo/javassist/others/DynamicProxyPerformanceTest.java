@@ -1,13 +1,9 @@
 package info.yangguo.demo.javassist.others;
 
-import com.esotericsoftware.reflectasm.MethodAccess;
 import javassist.*;
 import javassist.util.proxy.MethodHandler;
 import javassist.util.proxy.ProxyFactory;
 import javassist.util.proxy.ProxyObject;
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.*;
 import java.text.DecimalFormat;
@@ -23,7 +19,6 @@ public class DynamicProxyPerformanceTest {
         System.out.println("Create JDK Proxy: " + time + " ms");
 
         time = System.currentTimeMillis();
-        CountService cglibProxy = createCglibDynamicProxy(delegate);
         time = System.currentTimeMillis() - time;
         System.out.println("Create CGLIB Proxy: " + time + " ms");
 
@@ -41,11 +36,9 @@ public class DynamicProxyPerformanceTest {
         for (int i = 0; i < 10; i++) {
             System.out.println("----------------");
             test1(jdkProxy, "Run JDK Proxy: ");
-            test1(cglibProxy, "Run CGLIB Proxy: ");
             test1(javassistProxy, "Run JAVAASSIST Proxy: ");
             test1(javassistBytecodeProxy, "Run JAVAASSIST Bytecode Proxy: ");
             test2(delegate, "Java reflect: ");
-            test3(delegate, "reflectasm：");
         }
     }
 
@@ -75,18 +68,6 @@ public class DynamicProxyPerformanceTest {
     }
 
 
-    private static void test3(CountService countService, String label) {
-        MethodAccess method = MethodAccess.get(countService.getClass());
-        method.invoke(countService, "count");
-        int count = 10000000;
-        long time = System.currentTimeMillis();
-        for (int i = 0; i < count; i++) {
-            method.invoke(countService, "count");
-        }
-        time = System.currentTimeMillis() - time;
-        System.out.println(label + time + " ms, " + new DecimalFormat().format(count * 1000 / time) + " t/s");
-    }
-
     private static CountService createJdkDynamicProxy(final CountService delegate) {
         CountService jdkProxy = (CountService) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
                 new Class[]{CountService.class}, new JdkHandler(delegate));
@@ -104,28 +85,6 @@ public class DynamicProxyPerformanceTest {
         public Object invoke(Object object, Method method, Object[] objects)
                 throws Throwable {
             return method.invoke(delegate, objects);
-        }
-    }
-
-    private static CountService createCglibDynamicProxy(final CountService delegate) throws Exception {
-        Enhancer enhancer = new Enhancer();
-        enhancer.setCallback(new CglibInterceptor(delegate));
-        enhancer.setInterfaces(new Class[]{CountService.class});
-        CountService cglibProxy = (CountService) enhancer.create();
-        return cglibProxy;
-    }
-
-    private static class CglibInterceptor implements MethodInterceptor {
-
-        final Object delegate;
-
-        CglibInterceptor(Object delegate) {
-            this.delegate = delegate;
-        }
-
-        public Object intercept(Object object, Method method, Object[] objects,
-                                MethodProxy methodProxy) throws Throwable {
-            return methodProxy.invoke(delegate, objects);
         }
     }
 

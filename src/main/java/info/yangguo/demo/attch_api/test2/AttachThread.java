@@ -33,7 +33,7 @@ public class AttachThread extends Thread {
             while (true) {
                 listAfter = VirtualMachine.list();
                 for (VirtualMachineDescriptor vmd : listAfter) {
-                    if (!listBefore.contains(vmd)&&vmd.displayName().contains("demo")) {
+                    if (vmd.displayName().contains("TestMainInJar")) {
                         // 如果 VM 有增加，我们就认为是被监控的 VM 启动了
                         // 这时，我们开始监控这个 VM
                         vm = VirtualMachine.attach(vmd);
