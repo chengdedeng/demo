@@ -1,10 +1,8 @@
 package info.yangguo.demo.net;
 
-import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -19,7 +17,7 @@ import java.util.Map;
  * <p/>
  * dns缓存时间测试
  */
-public class DnsTester {
+public class DNSCacheTime {
     public static void main(String[] args) throws Exception {
         System.out.println("start loop\n\n");
         for (int i = 0; i < 30; ++i) {

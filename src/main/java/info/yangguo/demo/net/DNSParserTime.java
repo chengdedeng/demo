@@ -13,12 +13,13 @@ import java.util.Date;
  * <p/>
  * Description:
  */
-public class Test {
+public class DNSParserTime {
     public static void main(String args[]) throws UnknownHostException, InterruptedException {
+        java.lang.System.setProperty("java.net.preferIPv4Stack", "true");
+        java.lang.System.setProperty("java.net.preferIPv6Addresses", "false");
         for (int i = 0; i < 10; i++) {
             String host = "agibe.travelsky.com";
-//            String host = "baidu.com";
-            System.out.println("----");
+
             long begin1 = new Date().getTime();
             Inet4Address.getByName(host);
             long end1 = new Date().getTime();
@@ -30,8 +31,8 @@ public class Test {
             long end2 = new Date().getTime();
             System.out.println(end2 - begin2);
 
-
-            Thread.sleep(1000*5);
+            System.out.println("----");
+            Thread.sleep(1000 * 5);
         }
     }
 }
