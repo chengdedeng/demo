@@ -1,0 +1,24 @@
+$ javac -classpath $JAVA_HOME/lib/sa-jdi.jar DumpClassURL.java
+$ java -cp .:$JAVA_HOME/lib/sa-jdi.jar DumpClassURL `pgrep java` > log.txt
+Attaching to process ID 8873, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is 20.4-b02
+$
+
+异常：
+java -cp .:$JAVA_HOME/lib/sa-jdi.jar info.yangguo.demo.jvm.DumpClassURL 5563>log.txt
+Attaching to process ID 5563, please wait...
+attach: task_for_pid(5563) failed (5)
+Error attaching to process: sun.jvm.hotspot.debugger.DebuggerException: Can't attach to the process
+
+原因需要使用sudo权限
+sudo java -cp .:$JAVA_HOME/lib/sa-jdi.jar info.yangguo.demo.jvm.DumpClassURL 5563>log.txt
+
+
+
+这工具的缺点是ProtectionDomain是里没记录某些类的路径，例如rt.jar里的在这个工具的输出就是null。Bootstrap class loader加载的类都会是这样。
+另外，数组对应的Class与原始类型对应的Class都不包括在输出之内。
+得感谢同事九任提醒可以通过ProtectionDomain拿到路径信息，虽然不保证全但也算够用。
+
+这是个很简单的Serviceability Agent的应用。用它能很轻松的从VM里挖掘出许多有趣的信息出来。我常用的CLHSDB也是Serviceability Agent的一层皮，相当方便。
