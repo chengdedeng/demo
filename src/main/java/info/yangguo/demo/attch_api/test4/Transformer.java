@@ -13,22 +13,18 @@ public class Transformer implements ClassFileTransformer {
     private ClassPool classPool;
 
     public Transformer() {
-        System.out.println("TimedClassTransformer初始化开始");
         classPool = new ClassPool();
         classPool.appendSystemPath();
         try {
             classPool.appendPathList(System.getProperty("java.class.path"));
-            classPool.appendPathList("/Users/yangguo/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.20.0-GA/a9cbcdfb7e9f86fbc74d3afae65f2248bfbf82a0");
         } catch (Exception e) {
             System.out.println("异常:" + e);
             throw new RuntimeException(e);
         }
-        System.out.println("TimedClassTransformer初始化完成");
     }
 
     public byte[] transform(ClassLoader loader, String fullyQualifiedClassName, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classBytes) throws IllegalClassFormatException {
-        System.out.println("Transform开始");
         String className = fullyQualifiedClassName.replace("/", ".");
 
         classPool.appendClassPath(new ByteArrayClassPath(className, classBytes));
@@ -55,9 +51,11 @@ public class Transformer implements ClassFileTransformer {
                         continue;
                     }
                     System.out.println("Instrumenting method " + method.getLongName());
+                    //此处实现了一个AOP的环绕织入，在我们常规的需求中，可以在新增监控的report逻辑，
+                    //如果需要加载第三方的jar，可以通过动态加载classpath来实现
+
                     method.addLocalVariable("__metricStartTime", CtClass.longType);
                     method.insertBefore("__metricStartTime = System.currentTimeMillis();");
-                    String metricName = ctClass.getName() + "." + method.getName();
                     method.insertAfter("System.out.println( System.currentTimeMillis() - __metricStartTime);");
                     isClassModified = true;
                 }
@@ -65,7 +63,6 @@ public class Transformer implements ClassFileTransformer {
             if (!isClassModified) {
                 return null;
             }
-            System.out.println("Transform结束");
             return ctClass.toBytecode();
         } catch (Exception e) {
             System.out.println("Skip class : " + className + ",Error Message:" + e.getMessage());
