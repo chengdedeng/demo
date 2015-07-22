@@ -137,9 +137,9 @@ public class JavacCompileAndJar {
         String targetPath = currentDir + "/target/libs/demo-1.0-SNAPSHOT-fat.jar";
 
         HashMap<Object, Object> attributes = new HashMap<>();
-        attributes.put(Attributes.Name.MAIN_CLASS, "info.yangguo.demo.attch_api.test2.TestMainInJar");
+        attributes.put(Attributes.Name.MAIN_CLASS, "info.yangguo.demo.attch_api.test1.TestMainInJar");
         Attributes.Name agentClass = new Attributes.Name("Agent-Class");
-        attributes.put(agentClass, "info.yangguo.demo.attch_api.test2.AgentMain");
+        attributes.put(agentClass, "info.yangguo.demo.attch_api.test1.AgentMain");
         Attributes.Name canRedineClasses = new Attributes.Name("Can-Redine-Classes");
         attributes.put(canRedineClasses, "true");
         Attributes.Name canRetransformClasses = new Attributes.Name("Can-Retransform-Classes");

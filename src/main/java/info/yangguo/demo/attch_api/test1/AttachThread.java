@@ -1,4 +1,4 @@
-package info.yangguo.demo.attch_api.test4;
+package info.yangguo.demo.attch_api.test1;
 
 /**
  * Created by IntelliJ IDEA
@@ -14,10 +14,14 @@ import com.sun.tools.attach.VirtualMachineDescriptor;
 
 import java.util.List;
 
-public class AttachMain extends Thread {
+// 一个运行 Attach API 的线程子类
+public class AttachThread extends Thread {
+    private final List<VirtualMachineDescriptor> listBefore;
+
     private final String jar;
 
-    AttachMain(String attachJar) {
+    AttachThread(String attachJar, List<VirtualMachineDescriptor> vms) {
+        listBefore = vms;  // 记录程序启动时的 VM 集合
         jar = attachJar;
     }
 
@@ -29,7 +33,7 @@ public class AttachMain extends Thread {
             while (true) {
                 listAfter = VirtualMachine.list();
                 for (VirtualMachineDescriptor vmd : listAfter) {
-                    if (vmd.displayName().contains("TestExample")) {
+                    if (vmd.displayName().contains("TestMainInJar")) {
                         // 如果 VM 有增加，我们就认为是被监控的 VM 启动了
                         // 这时，我们开始监控这个 VM
                         vm = VirtualMachine.attach(vmd);
@@ -49,7 +53,9 @@ public class AttachMain extends Thread {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        new AttachMain("/Users/yangguo/Downloads/demo/target/libs/demo-1.0-SNAPSHOT-fat.jar").start();
+        new AttachThread("/Users/yangguo/work/code/demo/target/libs/demo-1.0-SNAPSHOT-fat.jar", VirtualMachine.list()).start();
+//        new AttachThread("/Users/yangguo/Downloads/demo/target/libs/demo-1.0-SNAPSHOT-fat.jar", VirtualMachine.list()).start();
+        System.out.println("--------");
         Thread.sleep(10000000);
     }
 }

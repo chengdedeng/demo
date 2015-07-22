@@ -1,4 +1,4 @@
-package info.yangguo.demo.attch_api.test5;
+package info.yangguo.demo.attch_api.test2;
 
 
 import javax.tools.JavaCompiler;
@@ -133,14 +133,14 @@ public class JavacCompileAndJar {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        String javaSourcePath = "/Users/yangguo/work/code/demo/src/main/java/info/yangguo/demo/attach_api/test4";
-        String javaClassPath = "/Users/yangguo/Downloads/demo/classes/info/yangguo/demo/attach_api/test4";
+        String javaSourcePath = "/Users/yangguo/work/code/demo/src/main/java/info/yangguo/demo/attach_api/test2";
+        String javaClassPath = "/Users/yangguo/Downloads/demo/classes/info/yangguo/demo/attach_api/test2";
         String jarClassPath = "/Users/yangguo/Downloads/demo/classes";
         String targetPath = "/Users/yangguo/Downloads/demo/target/libs/demo-1.0-SNAPSHOT-fat.jar";
 
         HashMap<Object, Object> attributes = new HashMap<>();
         Attributes.Name agentClass = new Attributes.Name("Agent-Class");
-        attributes.put(agentClass, "info.yangguo.demo.attch_api.test4.Agent");
+        attributes.put(agentClass, "info.yangguo.demo.attch_api.test2.Agent");
         Attributes.Name canRedineClasses = new Attributes.Name("Can-Redefine-Classes");
         attributes.put(canRedineClasses, "true");
         Attributes.Name canRetransformClasses = new Attributes.Name("Can-Retransform-Classes");

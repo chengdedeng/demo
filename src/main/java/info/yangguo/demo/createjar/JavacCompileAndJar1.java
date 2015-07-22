@@ -169,14 +169,14 @@ public class JavacCompileAndJar1 {
 
         HashMap<Object, Object> attributes = new HashMap<>();
         Attributes.Name agentClass = new Attributes.Name("Agent-Class");
-        attributes.put(agentClass, "info.yangguo.demo.attch_api.test2.AgentMain");
+        attributes.put(agentClass, "info.yangguo.demo.attch_api.test1.AgentMain");
         Attributes.Name canRedineClasses = new Attributes.Name("Can-Redine-Classes");
         attributes.put(canRedineClasses, "true");
         Attributes.Name canRetransformClasses = new Attributes.Name("Can-Retransform-Classes");
         attributes.put(canRetransformClasses, "true");
 
         JavacCompileAndJar1 javacCompileAndJar = new JavacCompileAndJar1(javaSourcePath, javaClassPath, targetPath, attributes);
-        javacCompileAndJar.createClassFile("package info.yangguo.demo.attch_api.test2;\n" +
+        javacCompileAndJar.createClassFile("package info.yangguo.demo.attch_api.test1;\n" +
                 "\n" +
                 "/**\n" +
                 " * Created by IntelliJ IDEA\n" +

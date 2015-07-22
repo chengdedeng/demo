@@ -1,4 +1,4 @@
-package info.yangguo.demo.attch_api.test2;
+package info.yangguo.demo.attch_api.test1;
 
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
