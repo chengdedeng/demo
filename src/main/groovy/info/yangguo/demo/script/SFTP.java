@@ -12,13 +12,13 @@ import java.io.IOException;
  * <p/>
  * Description:
  */
-public class sftpex {
+public class SFTP {
     public static void main(String[] args) {
-        String username = "testuser";
-        String host = "testserver.example.com";
-        String pass = "testpass";
-        String khfile = "/home/testuser/.ssh/known_hosts";
-        String identityfile = "/home/testuser/.ssh/id_rsa";
+        String username = "root";
+        String host = "192.168.161.87";
+        String pass = "op3tomcat";
+        String khfile = "/Users/yangguo/.ssh/known_hosts";
+        String identityfile = "/Users/yangguo/.ssh/id_rsa";
 
         JSch jsch = null;
         Session session = null;
@@ -40,10 +40,10 @@ public class sftpex {
 
         try {
             System.out.println("Starting File Upload:");
-            String fsrc = "/tmp/abc.txt", fdest = "/tmp/cde.txt";
+            String fsrc = "/Users/yangguo/work/code/flight-price/tops-eterm-interface/tz-eterm-interface-web/target/libs/tz-eterm-interface-web.war", fdest = "/root/tz-eterm-interface-web.war";
             c.put(fsrc, fdest);
 
-            c.get(fdest, "/tmp/testfile.bin");
+//            c.get(fdest, "/tmp/testfile.bin");
         } catch (Exception e) {	e.printStackTrace();	}
 
         c.disconnect();
