@@ -1,4 +1,4 @@
-package info.yangguo.demo.design.observer;
+package info.yangguo.demo.design.observerByJdk;
 
 /**
  * Created by IntelliJ IDEA
