@@ -69,6 +69,8 @@ dependencies {
     compile 'org.unidal.framework:web-framework:2.2.1'
     compile 'org.unidal.framework:foundation-service:2.2.0'
     compile 'org.springframework.security:spring-security-crypto:4.0.4.RELEASE'
+    compile 'io.reactivex:rxjava:1.2.4'
+    compile 'org.owasp.esapi:esapi:2.1.0.1'
 
     compile files('/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/lib/tools.jar')
     compile files('/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/lib/sa-jdi.jar')

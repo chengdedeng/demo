@@ -26,14 +26,14 @@ public class SSH2Test {
     public static void main(String[] args) {
         ExtClasspathLoader.loadClasspath("/Users/yangguo/.gradle/caches/modules-2/files-2.1/com.jcraft/jsch/0.1.53/658b682d5c817b27ae795637dfec047c63d29935");
         ExtClasspathLoader.loadClasspath("/Users/yangguo/.gradle/caches/modules-2/files-2.1/ch.ethz.ganymed/ganymed-ssh2/262/7761dc665d0f6993dc846d914214fb93291e2bdf");
-//        test1();
-        test2();
+        test1();
+//        test2();
     }
 
     public static void test1() {
-        String hostname = "192.168.161.87";
+        String hostname = "10.11.25.122";
         String username = "root";
-        String password = "op3tomcat";
+        String password = "1q2w3e4r";
         //指明连接主机的IP地址
         Connection conn = new Connection(hostname);
         ch.ethz.ssh2.Session ssh = null;
