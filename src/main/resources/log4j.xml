@@ -8,17 +8,13 @@
         </layout>
     </appender>
 
-    <appender name="catAppender" class="com.dianping.cat.log4j.CatAppender"></appender>
-
     <root>
-        <level value="debug"/>
+        <level value="info"/>
         <appender-ref ref="stdout"/>
-        <appender-ref ref="catAppender"/>
     </root>
 
     <logger name="info.yangguo" additivity="false">
         <level value="INFO"/>
-        <appender-ref ref="catAppender"/>
     </logger>
 
 </log4j:configuration>
